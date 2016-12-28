@@ -2,6 +2,7 @@ TARGET = main
 BUILD_DIR = ../../build/
 
 DEVKITPATH = ../../devkitadv/
+DEVKITARMPATH = ../../devkitARM/
 LIBGBA = ../../libgba/
 BASFILEPATH = ../../basfiles/
 
@@ -9,6 +10,7 @@ CC = $(DEVKITPATH)bin/arm-agb-elf-gcc
 LD = $(DEVKITPATH)bin/arm-agb-elf-gcc
 AS = $(DEVKITPATH)arm-agb-elf/bin/as
 OBJCOPY = $(DEVKITPATH)bin/arm-agb-elf-objcopy
+GBAFIX = $(DEVKITARMPATH)bin/gbafix
 
 CFLAGS	= -c -Wall -marm -fomit-frame-pointer -O0 $(INCPATH) -DDEBUG
 MODEL = -mthumb -mthumb-interwork
@@ -42,6 +44,7 @@ visoly.o:  $(BASFILEPATH)visoly.s
 
 $(TARGET).gba : $(TARGET).elf
 	$(OBJCOPY) -O binary $(TARGET).elf $(BUILD_DIR)$(TARGET).gba
+	$(GBAFIX) $(BUILD_DIR)$(TARGET).gba
 
 $(TARGET).elf : $(OBJFILES)
 	$(LD) -marm -nostdlib -Wl,$(LDFLAGS) -mthumb -mthumb-interwork -o $(TARGET).elf $(OBJFILES) $(OTHER_OBJ) $(LIBPATH) $(LIBFILE)
