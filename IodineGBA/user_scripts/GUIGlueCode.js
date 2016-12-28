@@ -23,8 +23,16 @@ function registerGUIEvents() {
         IodineGUI.Iodine.pause();
     });
     addEvent("click", document.getElementById("restart"), function (e) {
+        IodineGUI.Iodine.stop();
+        IodineGUI.Iodine.ROM = null;
         loadRegisteredROM();
-        IodineGUI.Iodine.restart();
+
+        setTimeout( function() {
+            if(IodineGUI.Iodine.ROM != null){
+              IodineGUI.Iodine.play();
+            }
+        }, 1000 );
+
     });
     addEvent("click", document.getElementById("sound"), function () {
         setValue("sound", !!this.checked);

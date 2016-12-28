@@ -170,6 +170,11 @@ li.hide {
     opacity: 1;
 }
 
+#bios_status, #rom_status{
+    color:red;
+}
+
+
 /*
 |-----------------------------------------
 | Touch Controls

@@ -151,7 +151,7 @@ function registerAudioHandler() {
 function registerWebStorage() {
     var b64 = localStorage.getItem('GBA_BIOS');
     if(b64 != null) {
-        document.getElementById("bios_load").setAttribute("disabled","disabled");
+        document.getElementById("bios_status").innerHTML = "Loaded";
         var b = base64ToArray(b64);
         IodineGUI.Iodine.attachBIOS(b);
     }
@@ -159,4 +159,5 @@ function registerWebStorage() {
 
 function registerOnLoadROM(){
     loadRegisteredROM();
+    console.log("registerOnLoadROM()");
 }

@@ -33,6 +33,8 @@ function attachROM(ROM) {
     catch (error) {
         IodineGUI.Iodine.attachROM(ROM);
     }
+
+    document.getElementById("rom_status").innerHTML = "Loaded";
 }
 function fileLoadShimCode(files, ROMHandler) {
     if (typeof files != "undefined") {
@@ -91,7 +93,7 @@ function processDownload(parentObj, attachHandler) {
 }
 
 function loadRegisteredROM(){
-        var ajax = new XMLHttpRequest();
+    var ajax = new XMLHttpRequest();
     ajax.onload = function (e) {
         if (this.status === 200) {
             var rom_json = JSON.parse(this.responseText);
